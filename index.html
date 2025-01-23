@@ -1,44 +1,74 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Hueveras de cartón: 2</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.87.0/phaser.min.js"></script>
-		<script>
+        <head>
+                <meta charset="UTF-8">
+                <title>Hueveras de cartón: 2</title>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.87.0/phaser.min.js"></script>
+                <script>
 
 let canvas_x = 800;
 let canvas_y = 450;
-let rect_dir = 1;
-
+let rect_dir = 2;
+let teclas;
 let config = {
-	width: canvas_x,
-	height: canvas_y,
-	scene:{
-		preload: precarga,
-		create: crea,
-		update: actualiza
-	}
+        width: canvas_x,
+        height: canvas_y,
+        scene:{
+                preload: precarga,
+                create: crea,
+                update: actualiza
+        }
 };
 
 let game = new Phaser.Game(config)
 
 let rect
 
+function detectarTeclas(){
+if(teclas.left.isDown){
+    rect.x -= rect_dir;
+    }
+if(teclas.right.isDown){
+    rect.x += rect_dir;
+    }
+if(teclas.up.isDown){
+    rect.y -= rect_dir;
+    }
+if(teclas.down.isDown){
+    rect.y += rect_dir;
+    }
+}
+function colisiones(){
+if(rect.x <= 16){
+    rect.x = 16;
+}
+if(rect.x >= 784){
+    rect.x = 784;
+}
+if(rect.y <= 16){
+    rect.y = 16;
+}
+if(rect.y >= 434){
+    rect.y = 434;
+}
+}
+
 function precarga(){
 }
 
 function crea (){
-rect = this.add.rectangle(400, 225, 32, 32, 0xffffff)
+rect = this.add.rectangle(400, 225, 32, 32, 0xffffff);
+teclas = this.input.keyboard.createCursorKeys();
 }
 
 function actualiza(){
-rect.x += rect_dir;
-if (rect.x <= 0 || rect.x >= canvas_x){
-rect_dir = -rect_dir;
+detectarTeclas();
+colisiones();
+                
 }
-		</script>
-		<style>
-		canvas {
+                </script>
+                <style>
+canvas {
     border-radius: 15px;
     box-shadow: 0px 10px 10px #cbcbcb;
     transition: .5s;
@@ -47,8 +77,8 @@ canvas:hover {
     box-shadow: 0px 10px 10px #737373;
     transition: .5s;
 }
-		</style>
-	</head>
-	<body>
-	</body>
+                </style>
+        </head>
+        <body>
+        </body>
 </html>
