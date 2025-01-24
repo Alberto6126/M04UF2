@@ -18,52 +18,71 @@ let config = {
                 create: crea,
                 update: actualiza
         }
-};
+}
 
 let game = new Phaser.Game(config)
+let huevera_b, huevera_m, huevera_d;
+let H_Mondongo;
+let H_Luffy
+let H_Base
+//let huevoMain
 
-let rect
+function detectarTeclas_huevoMain(){
 
-function detectarTeclas(){
-if(teclas.left.isDown){
-    rect.x -= rect_dir;
-    }
-if(teclas.right.isDown){
-    rect.x += rect_dir;
-    }
-if(teclas.up.isDown){
-    rect.y -= rect_dir;
-    }
-if(teclas.down.isDown){
-    rect.y += rect_dir;
-    }
+//if(teclas.left.isDown){
+  //  huevoMain.x -= rect_dir;
+   // }
+//if(teclas.right.isDown){
+  //  huevoMain.x += rect_dir;
+    //}
+//if(teclas.up.isDown){
+  //  huevoMain.y -= rect_dir;
+    //}
+//if(teclas.down.isDown){
+  //  huevoMain.y += rect_dir;
+    //}
 }
-function colisiones(){
-if(rect.x <= 16){
-    rect.x = 16;
-}
-if(rect.x >= 784){
-    rect.x = 784;
-}
-if(rect.y <= 16){
-    rect.y = 16;
-}
-if(rect.y >= 434){
-    rect.y = 434;
-}
+
+function colisiones_huevoMain(){
+
+//if(huevoMain.x <= 16){
+  // huevoMain.x = 16;
+//}
+//if(huevoMain.x >= 784){
+  //  huevoMain.x = 784;
+//}
+//if(huevoMain.y <= 16){
+  //  huevoMain.y = 16;
+//}
+//if(huevoMain.y >= 434){
+  //  huevoMain.y = 434;
+//}
+
 }
 
 function precarga(){
+this.load.image('huevera','img/huevera.png');
+this.load.image('huevoMondongo','img/HuevoMondongo128.png');
+this.load.image('huevoLuffy','img/HuevoLuffy128.png');
+this.load.image('huevoBase','img/HuevoBase128.png');
 }
 
 function crea (){
-rect = this.add.rectangle(400, 225, 32, 32, 0xffffff);
+//rect = this.add.rectangle(400, 225, 32, 32, 0xffffff);
+//huevoMain = this.add.image(400,225, 'huevoMondongo');
 teclas = this.input.keyboard.createCursorKeys();
+huevera_b = this.add.image(400,128, 'huevera');
+//AÑADIR FILTRO DE TINTE:
+huevera_b.setTint(Phaser.Display.Color.GetColor(255,255,255));
+huevera_b.setScale(.75);
+let H_Mondongo = this.add.image(100,200, 'huevoMondongo');
+let H_Luffy = this.add.image(300,200, 'huevoLuffy');
+let H_Base = this.add.image(500,200, 'huevoBase');
 }
 
 function actualiza(){
-detectarTeclas();
-colisiones();
+detectarTeclas_huevoMain();
+colisiones_huevoMain();
                 
 }
                 </script>
