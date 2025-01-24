@@ -21,7 +21,7 @@ let config = {
 }
 
 let game = new Phaser.Game(config)
-let huevera_b, huevera_m, huevera_d;
+let huevera_dragon, huevera_piece, huevera_base;
 let H_Mondongo;
 let H_Luffy
 let H_Base
@@ -71,13 +71,22 @@ function crea (){
 //rect = this.add.rectangle(400, 225, 32, 32, 0xffffff);
 //huevoMain = this.add.image(400,225, 'huevoMondongo');
 teclas = this.input.keyboard.createCursorKeys();
-huevera_b = this.add.image(400,128, 'huevera');
+huevera_dragon = this.add.image(150,75, 'huevera');
+huevera_piece = this.add.image(150,225, 'huevera');
+huevera_base = this.add.image(150,375,'huevera');
 //AÑADIR FILTRO DE TINTE:
-huevera_b.setTint(Phaser.Display.Color.GetColor(255,255,255));
-huevera_b.setScale(.75);
-let H_Mondongo = this.add.image(100,200, 'huevoMondongo');
-let H_Luffy = this.add.image(300,200, 'huevoLuffy');
-let H_Base = this.add.image(500,200, 'huevoBase');
+huevera_dragon.setTint(Phaser.Display.Color.GetColor(0,0,255));
+huevera_dragon.setScale(.75);
+huevera_piece.setTint(Phaser.Display.Color.GetColor(255,0,0));
+huevera_piece.setScale(.75);
+huevera_base.setTint(Phaser.Display.Color.GetColor(0,255,0));
+huevera_base.setScale(.75)
+let H_Mondongo = this.add.image(430,200, 'huevoMondongo');
+H_Mondongo.setScale(.75);
+let H_Luffy = this.add.image(580,200, 'huevoLuffy');
+H_Luffy.setScale(.75);
+let H_Base = this.add.image(720,200, 'huevoBase');
+H_Base.setScale(.75);
 }
 
 function actualiza(){
