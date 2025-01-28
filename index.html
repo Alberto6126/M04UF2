@@ -23,8 +23,8 @@ let config = {
 let game = new Phaser.Game(config)
 let huevera_dragon, huevera_piece, huevera_base;
 let H_Mondongo;
-let H_Luffy
-let H_Base
+let H_Luffy;
+let H_Base;
 //let huevoMain
 
 function detectarTeclas_huevoMain(){
@@ -83,10 +83,22 @@ huevera_base.setTint(Phaser.Display.Color.GetColor(0,255,0));
 huevera_base.setScale(.75)
 let H_Mondongo = this.add.image(430,200, 'huevoMondongo');
 H_Mondongo.setScale(.75);
+H_Mondongo.setInteractive();
+	H_Mondongo.on('pointerdown', () => {
+	console.log("ClickMondongo")
+	})
 let H_Luffy = this.add.image(580,200, 'huevoLuffy');
 H_Luffy.setScale(.75);
+H_Luffy.setInteractive();
+        H_Luffy.on('pointerdown', () => {
+        console.log("ClickLuffy")
+        })
 let H_Base = this.add.image(720,200, 'huevoBase');
 H_Base.setScale(.75);
+H_Base.setInteractive();
+        H_Base.on('pointerdown', () => {
+        console.log("ClickBase")
+        })
 }
 
 function actualiza(){
