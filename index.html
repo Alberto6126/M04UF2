@@ -4,7 +4,11 @@
                 <meta charset="UTF-8">
                 <title>Hueveras de cartón: 2</title>
                 <script src="phaser.min.js"></script>
-                <script src="script.js"></script>
+                <!-- he agregado phaser minimizado para que en el caso de que caiga el cdn, se pueda seguir jugando, sé que existe la opción de tener el minimizado
+                 en el proyecto, que por defecto se cargue el cdn y en el caso de haber errores de conexión con el servidor del cdn, recurrir al minimizado y descargarlo 
+                 desde el servidor web donde esté el juego, de hecho esta es la mejor forma por lo que he leído pero desconozco como se hace, ante la duda mantengo el script minimizado
+                 ya que si un día llegara a caer el cdn y tuviera que jugar o debugar el juego no podría hacerlo -->
+                 <script src="script.js"></script>
                 <style>
 canvas {
     border-radius: 15px;
