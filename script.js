@@ -18,6 +18,7 @@ let huevera_dragon, huevera_piece, huevera_base;
 // let Huevo;
 let OffsetX = 50;
 let huevoDrag = false;
+let contador = 60;
 //Tendría que ser pública???????? (seguro que no) 
 // let huevoObject={
 //   x,
@@ -71,6 +72,12 @@ crea.input.on('drag', function (pointer, object, x, y){
 crea.input.on('dragend', function (pointer, object, x, y){
   crea.Huevo.setScale(.75);
   huevoDrag = false;
+
+  //CREAR OBJETO 100% NECESARIO PARA NO HACER 128098 IFS
+  if(Phaser.Geom.Intersects.RectangleToRectangle(crea.huevera_dragon.getBounds(), crea.Huevo.getBounds())){
+      contador += 30;
+      crea.Huevo.destroy();
+  }
 });
 
 
@@ -115,19 +122,35 @@ function creaHueveras(crea){
 // }
 
 
-function crea (){
-    FondoBG = this.add.image(canvas_x/2,canvas_y/2, 'FondoBG');
-    FondoBG.setTint(Phaser.Display.Color.GetColor(140,100,90));   //USAR setTint(Phaser.Display.Color.GetColor()) PARA CAMBIAR EL TONO DEL SPRITE
-    teclas = this.input.keyboard.createCursorKeys();
-    creaHueveras(this)
-    crearHuevos(this);
+function prueba(){
+  console.log("Contador: ", contador);
+  contador--;
+  if(contador <= 0){
+    // clearInterval(intervalo_contador);
+    contador = 60;
+    // setInterval(prueba, 1000);
+  }
+}
 
+function crea (){
+  intervalo_contador = setInterval(prueba, 1000);
+  FondoBG = this.add.image(canvas_x/2,canvas_y/2, 'FondoBG');
+  FondoBG.setTint(Phaser.Display.Color.GetColor(140,100,90));   //USAR setTint(Phaser.Display.Color.GetColor()) PARA CAMBIAR EL TONO DEL SPRITE
+  teclas = this.input.keyboard.createCursorKeys();
+  this.contadorText = this.add.text(canvas_x/2 + canvas_x/3, canvas_y/20, contador, { 
+    fontFamily: 'sans-serif',
+    fontSize: '60px' });
+  creaHueveras(this)
+  crearHuevos(this);
+  // console.log(typeof intervalo_contador);
+  // setTimeout(prueba, 5000);
+  
 }
 
 
 function actualiza(){
-
-//DIFERENTES VELOCIDADES PARA CADA HUEVO
+  
+  //DIFERENTES VELOCIDADES PARA CADA HUEVO
   if(this.Huevo.texture.key == huevos[0] && !huevoDrag){
     this.Huevo.y += 6;
   }
@@ -158,4 +181,7 @@ function actualiza(){
       console.log("hueveraBase");
     }
 
-}
+    this.contadorText.setText(contador);
+    
+  }
+  
